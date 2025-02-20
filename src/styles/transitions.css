@@ -1,0 +1,95 @@
+/* Page transitions */
+.page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 400ms ease-out;
+  }
+  
+  .page-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 400ms ease-in;
+  }
+  
+  /* Component transitions */
+  .fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+  
+  /* Card hover effects */
+  .card-transition {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-transition:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  /* Button transitions */
+  .button-scale {
+    transition: transform 0.2s ease;
+  }
+  
+  .button-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image load animation */
+  .img-load {
+    animation: imgFadeIn 0.6s ease-out;
+  }
+  
+  @keyframes imgFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Text reveal animation */
+  .text-reveal {
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .text-reveal-inner {
+    animation: textReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  @keyframes textReveal {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
