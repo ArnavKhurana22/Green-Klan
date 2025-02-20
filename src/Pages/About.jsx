@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import {  FaLinkedin } from 'react-icons/fa';
-import abhishekImg from '../assets/abhishekImg.jpg';
+import abhishekImg from '../assets/AbhishekImg.jpg';
 import gauravImg from '../assets/gaurav.jpg';
 import arnavImg from '../assets/arnav.jpg';
 import himajaImg from '../assets/himaja.jpg';
