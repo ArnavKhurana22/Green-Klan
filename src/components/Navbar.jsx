@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/tryLogo2.png";
+import { motion } from "framer-motion";
+import logo from "../assets/MainLogo.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,7 +25,10 @@ export default function Navbar() {
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuOpen && !event.target.closest(".nav-container, .nav-dropdown")) {
+      const navContainer = event.target.closest(".nav-container");
+      const mobileButton = event.target.closest(".mobile-menu-btn");
+      
+      if (menuOpen && !navContainer && !mobileButton) {
         setMenuOpen(false);
       }
     };
@@ -50,49 +53,61 @@ export default function Navbar() {
   };
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.nav
-          initial={{ opacity: 1 }}
-          animate={{ opacity: visible ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="navbar"
+    <motion.nav
+      initial={{ opacity: 1 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.3 }}
+      className="navbar"
+    >
+      <div className="nav-container">
+        <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
+          <img src={logo} alt="Logo" className="logo-img" />
+          <span className="brand-name">GreenKlan</span>
+        </Link>
+
+        {/* Desktop Links */}
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/programs">Programs</Link>
+          <Link to="/projects">Projects</Link>
+          <Link to="/about">About Us</Link>
+          <button className="contact-link" onClick={handleContactClick}>
+            Contact
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="mobile-menu-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            setMenuOpen(!menuOpen);
+          }}
         >
-          <div className="nav-container">
-            <Link to="/" className="logo">
-              <img src={logo} alt="Logo" className="logo-img" />
-            </Link>
+          {menuOpen ? <FiX /> : <FiMenu />}
+        </button>
 
-            <span className="brand-name">GreenKlan</span>
-
-            {/* Desktop Links */}
-            <div className="nav-links">
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-              <Link to="/projects">Projects</Link>
-              <button className="contact-link" onClick={handleContactClick}>
-                Contact
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <FiX /> : <FiMenu />}
+        {/* Mobile Dropdown */}
+        <motion.div
+          className={`nav-dropdown ${menuOpen ? "active" : ""}`}
+          initial={false}
+          animate={{
+            height: menuOpen ? "auto" : 0,
+            opacity: menuOpen ? 1 : 0
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="dropdown-content">
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/programs" onClick={() => setMenuOpen(false)}>Programs</Link>
+            <Link to="/projects" onClick={() => setMenuOpen(false)}>Projects</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
+            <button className="dropdown-contact" onClick={handleContactClick}>
+              Contact
             </button>
-
-            {/* Mobile Dropdown */}
-            <div className={`nav-dropdown ${menuOpen ? "active" : ""}`}>
-              <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-              <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-              <Link to="/projects" onClick={() => setMenuOpen(false)}>Projects</Link>
-              <button className="contact-link" onClick={handleContactClick}>
-                Contact
-              </button>
-            </div>
           </div>
-        </motion.nav>
-      )}
-    </AnimatePresence>
+        </motion.div>
+      </div>
+    </motion.nav>
   );
 }

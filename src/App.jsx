@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './Pages/Home';
 import About from './Pages/About';
+import Programs from "./Pages/programs"; 
 import Projects from './Pages/Projects';
 import Contact from './Pages/Contact';
 
@@ -13,13 +14,14 @@ const pageVariants = {
 };
 
 function AnimatedRoutes() {
-  const location = useLocation(); // Track route changes for animation
+  const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MotionWrapper><Home /></MotionWrapper>} />
         <Route path="/about" element={<MotionWrapper><About /></MotionWrapper>} />
+        <Route path="/programs" element={<MotionWrapper><Programs /></MotionWrapper>} /> {/* ✅ Fixed */}
         <Route path="/projects" element={<MotionWrapper><Projects /></MotionWrapper>} />
         <Route path="/contact" element={<MotionWrapper><Contact /></MotionWrapper>} />
       </Routes>

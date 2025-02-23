@@ -1,46 +1,120 @@
 import { motion } from 'framer-motion';
-import { AnimatePresence } from 'framer-motion';
-
-const projects = [
-  {
-    title: "Urban Reforestation",
-    description: "Planting 1 million trees in urban areas by 2025",
-  },
-  {
-    title: "Ocean Cleanup",
-    description: "Removing plastic waste from coastal regions",
-  }
-];
+import { FiActivity, FiUsers, FiBriefcase, FiBarChart, FiPackage } from 'react-icons/fi';
 
 export default function Projects() {
+  const projects = [
+    {
+      title: "AI Product Sustainability Identifier",
+      icon: <FiActivity className="project-icon" />,
+      status: "Active",
+      description: "Leveraging AI technology to analyze and rate product sustainability through image recognition",
+      features: [
+        "🖼️ Image-based sustainability assessment",
+        "📊 Real-time eco-impact scoring",
+        "📱 User-friendly mobile integration"
+      ],
+      color: "bg-blue-50"
+    },
+    {
+      title: "Generation G Klan",
+      icon: <FiUsers className="project-icon" />,
+      status: "Growing",
+      description: "Cultivating a global network of environmentally conscious change-makers",
+      features: [
+        "🌍 100+ members worldwide",
+        "📚 Monthly sustainability workshops",
+        "🤝 Collaborative eco-projects platform"
+      ],
+      color: "bg-purple-50"
+    },
+    {
+      title: "Sustainable Organization Consulting",
+      icon: <FiBriefcase className="project-icon" />,
+      status: "Active",
+      description: "Guiding businesses through green transformation strategies",
+      features: [
+        "🏭 Carbon footprint analysis",
+        "📈 Sustainable ROI modeling",
+        "♻️ Circular economy integration"
+      ],
+      color: "bg-green-50"
+    },
+    {
+      title: "ESG Rating Framework",
+      icon: <FiBarChart className="project-icon" />,
+      status: "Developing",
+      description: "Comprehensive ESG evaluation system for corporate sustainability",
+      features: [
+        "📋 50+ evaluation metrics",
+        "🔍 Third-party audit integration",
+        "🌱 Dynamic impact forecasting"
+      ],
+      color: "bg-orange-50"
+    },
+    {
+      title: "Sustainable Product Collaboration",
+      icon: <FiPackage className="project-icon" />,
+      status: "Expanding",
+      description: "Bridging eco-manufacturers with conscious consumers",
+      features: [
+        "🛍️ Verified green marketplace",
+        "📦 Carbon-neutral logistics",
+        "🌳 Profit-for-planet model"
+      ],
+      color: "bg-teal-50"
+    }
+  ];
+
   return (
-    <motion.div
+    <motion.section 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="projects-page"
+      transition={{ duration: 0.8 }}
+      className="projects-section"
     >
-      <h1>Our Projects</h1>
-      <div className="projects-grid">
-        <AnimatePresence>
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="project-card"
-            >
-              <div className="project-image">
-                <img src={`/src/assets/${project.image}`} alt={project.title} />
-              </div>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <button className="learn-more">Learn More</button>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      <div className="header-container">
+        <h2 className="section-title">
+          Impact Initiatives
+          <span className="title-underline"></span>
+        </h2>
+        <p className="section-subtitle">
+          Driving systemic change through innovative sustainability solutions
+        </p>
       </div>
-    </motion.div>
+
+      <div className="projects-grid">
+        {projects.map((project, index) => (
+          <motion.div 
+            key={index}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: index * 0.15 }}
+            className={`project-card ${project.color}`}
+          >
+            <div className="card-header">
+              <div className="icon-container">
+                {project.icon}
+                <span className={`status-badge ${project.status.toLowerCase().replace(' ', '-')}`}>
+                  {project.status}
+                </span>
+              </div>
+              <div>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+              </div>
+            </div>
+            
+            <div className="feature-list">
+              {project.features.map((feature, i) => (
+                <div key={i} className="feature-item">
+                  <div className="feature-icon">➤</div>
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
   );
 }
