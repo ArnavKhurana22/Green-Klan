@@ -9,7 +9,7 @@ import himajaImg from '../assets/himaja.jpg';
 const teamMembers = [
   {
     name: "Abhishek Ray",
-    role: "Co Founder",
+    role: "Co-Founder",
     bio: "Meet Abhishek Ray—an educator, entrepreneur, and advocate for sustainability. With a background in Electrical Engineering and an MBA, he combines business expertise with a commitment to environmental impact. As an IICA-certified Independent Director, he mentors future leaders in sustainable business, green marketing, and ethical leadership, driving lasting change for both businesses and the planet.",
     social: { linkedin: "https://www.linkedin.com/in/abhishek-ray-theoptimist/", instagram: "https://www.instagram.com/itsabhishekray?igsh=NWtzY2Y4MmE3cW41" },
     image: abhishekImg,
@@ -17,7 +17,7 @@ const teamMembers = [
   },
   {
     name: "Gaurav Bhardwaj",
-    role: "Co Founder",
+    role: "Co-Founder",
     bio: "Gaurav, an AI-ML researcher, integrates climate solutions into machine learning. He has prevented nearly a ton of plastic waste, led tree plantations, and actively engages with environmentalists. His mission: build a 10M-strong 'Gen G' community by 2028 for pro-environment choices. Social Media: Climate strategist | Built AI tool for lung disease detection | Vegan | Mountain trekker | Advocates awareness & empathy for 21st-century issues.",
     social: { linkedin: "https://www.linkedin.com/in/gvbj/", instagram: "https://www.instagram.com/gaurav11bhardwaj?igsh=MjV3YzJtc2hveWo4" },
     image: gauravImg,
@@ -25,15 +25,15 @@ const teamMembers = [
   },
   {
     name: "Arnav Khurana",
-    role: "Co Founder",
-    bio: "Arnav Khurana, a third-year B.Tech Computer Science student, is passionate about leveraging technology for sustainability. With a strong foundation in software development and data science, he explores innovative solutions to environmental challenges. From optimizing resource management to developing eco-friendly applications, they aim to bridge the gap between technology and sustainability, driving positive change for a greener future.",
+    role: "Co-Founder",
+    bio: "Arnav Khurana, a third-year B.Tech Computer Science student, is passionate about leveraging technology for sustainability. With a strong foundation in software development and data science, he explores innovative solutions to environmental challenges. From optimizing resource management to developing eco-friendly applications, He aims to bridge the gap between technology and sustainability, driving positive change for a greener future.",
     social: { linkedin: "https://www.linkedin.com/in/arnav-khurana-75109927b/", instagram: "https://www.instagram.com/_arnavkhurana?igsh=YnNpeGZsb2k3aTFu&utm_source=qr" },
     image: arnavImg,
     message: "Tech meets sustainability here 💡"
   },
   {
     name: "Himaja Mullapudi",
-    role: "Co Founder",
+    role: "Co-Founder",
     bio: "Dr. Himaja Mullapudi, a dedicated dentist and sustainability advocate, is committed to integrating eco-friendly practices into healthcare. With a strong foundation in clinical expertise and strategic HR management, she actively promotes environmental awareness in her field. Passionate about creating a greener future, she continues to explore innovative ways to merge her professional skills with sustainability efforts.",
     social: { linkedin: "https://www.linkedin.com/in/dr-himaja-mullapudi-675501249/", instagram: "https://www.instagram.com/h_mullapudi?igsh=Zms5bmdkN3kxcmNy" },
     image: himajaImg,

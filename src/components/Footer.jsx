@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-section">
           <h4>Contact Us</h4>
           <div className="footer-contact-info">
-
+            <p>+91 97703 77316</p>
             <p>agahenv@gmail.com</p>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 Green Kian. All rights reserved</p>
+        <p>© 2025 Green Klan. All rights reserved</p>
       </div>
     </footer>
   );

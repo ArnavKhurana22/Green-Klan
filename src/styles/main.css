@@ -1,6 +1,12 @@
 @import url('./transitions.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-body, .home-page {
+body {
+  margin:0;
+  padding:0;
+}
+
+.home-page {
   margin: 0;
   padding: 0;
 }
@@ -15,7 +21,7 @@ body, .home-page {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat';
   line-height: 1.6;
   background-color: var(--background);
   color: var(--dark-text);
@@ -114,8 +120,7 @@ body {
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background: rgb(255, 255, 255);
   overflow: hidden;
 }
 
@@ -126,7 +131,7 @@ body {
 .dropdown-content a, .dropdown-contact {
   display: block;
   padding: 1rem 2rem;
-  color: #333;
+  color: #000000;
   text-decoration: none;
   width: 100%;
   text-align: left;
@@ -137,7 +142,7 @@ body {
 }
 
 .dropdown-content a:hover, .dropdown-contact:hover {
-  background: #f8fafc;
+  background: #13b900;
 }
 
 @media (max-width: 768px) {
@@ -453,6 +458,27 @@ body {
   margin: 10px 0;
 }
 
+@media (max-width: 768px) { /* Tablets & smaller */
+  .hero-content h1 {
+    font-size: 2rem; /* Reduce heading size */
+  }
+
+  .hero-content p {
+    font-size: 1rem; /* Reduce paragraph size */
+  }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+  .hero-content h1 {
+    font-size: 2.5rem; /* Even smaller for mobile */
+  }
+
+  .hero-content p {
+    font-size: 0.9rem; /* Adjust paragraph size */
+  }
+}
+
+
 .cta-button {
   border: 2px solid #00A651;
   color: #00A651;
@@ -475,27 +501,79 @@ body {
   background: var(--secondary-green);
 }
 
+.stats-section {
+  padding: 4rem 5%;
+  background: var(--secondary-green);
+}
+
 .stats-grid {
-  display: grid; /* Change flex to grid */
-  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; /* Reduced gap */
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  opacity: 1; /* Remove previous opacity */
+  transform: none; /* Remove previous transform */
+}
+
+.stat-item {
+  overflow: hidden;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  margin-bottom: 0.2rem;
+  color: var(--primary-green);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Number animation */
+@keyframes countUp {
+  from { 
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Faster animations */
+.stat-item.animated h3 {
+  animation: countUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 /* Tablet: Show 2 per row */
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+  }
+  
+  .stat-item h3 {
+    font-size: 2rem; /* Slightly smaller on tablets */
+  }
+}
+
+/* Mobile: Single column */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-item h3 {
+    font-size: 1.8rem; /* Smaller on phones */
   }
 }
 
 
-.stat-item h3 {
-  font-size: 2.5rem;
-  color: var(--primary-green);
-}
+
+
 
 
 .mission-section {

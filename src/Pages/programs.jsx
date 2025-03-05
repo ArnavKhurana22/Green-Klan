@@ -8,7 +8,7 @@ export default function Programs() {
       title: "Volunteer Eco Internship",
       icon: <FaLeaf className="program-icon" />, // ✅ Fix: Replaced FiLeaf with FaLeaf
       duration: "1st Phase - 2 Month Internship (Remote)",
-      description: "Changemakers envision and get empowered to build a sustainable future. This project is a call to action for passionate individuals who want to combine ecological understanding and innovation with social impact. We believe that the most powerful solutions come from the ground up—from individuals and then communities that understand their unique challenges and opportunities. ",
+      description: "Changemakers envision and are empowered to build a sustainable future through this initiative. This project serves as a call to action for passionate individuals eager to merge ecological understanding and innovation with social impact. We believe that the most powerful solutions emerge from the ground up—starting with individuals who recognize their unique challenges and opportunities, then expanding to communities working together for meaningful change.",
       offers: [
         "🌱 Training & Mentorship: Problem-solving with community leverage",
         "🛠️ Skill Development: Project management & environmental advocacy",
@@ -20,7 +20,7 @@ export default function Programs() {
       title: "Volunteer Eco Innovators",
       icon: <FaRocket className="program-icon" />, // ✅ Fix: Replaced FiRocket with FaRocket
       duration: "Advanced Implementation Phase",
-      description: "Here the explorers from 1st phase join as  committed individuals in shaping the future of ecological restoration and sustainability. This program is designed for interns who bring fresh perspectives, bold ideas, and a relentless drive to make a difference.",
+      description: "This standalone program is dedicated to developing impactful projects aligned with environmental Sustainable Development Goals (SDGs). Designed for interns with fresh perspectives, bold ideas, and a strong drive for positive change, this program fosters innovation and real-world solutions for a greener future.",
       offers: [
         "🔧 Hands-On Experience: Develop impactful environmental projects",
         "💡 Creative Freedom: Bring your ideas to life with support",

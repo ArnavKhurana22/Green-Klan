@@ -1,9 +1,47 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Footer from '../components/Footer'; 
 import heroImage from '../assets/hero-image.jpg';
 
 export default function Home() {
+  const [stats, setStats] = useState([0, 0, 0, 0]);
+  const finalStats = [500, 300, 70, 300]; // Your actual numbers
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateNumbers();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(document.querySelector('.stats-section'));
+    return () => observer.disconnect();
+  }, []);
+
+  const animateNumbers = () => {
+    finalStats.forEach((final, index) => {
+      let start = 0;
+      const duration = 300;
+      const stepTime = Math.max(1, Math.floor(duration / final));
+      
+      const timer = setInterval(() => {
+        start += 1;
+        setStats(prev => {
+          const newStats = [...prev];
+          newStats[index] = start;
+          return newStats;
+        });
+        if (start >= final) clearInterval(timer);
+      }, stepTime);
+    });
+  };
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -16,7 +54,7 @@ export default function Home() {
         className="hero-section" 
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="overlay"></div> {/* Dark overlay for contrast */}
+        <div className="overlay"></div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -41,10 +79,9 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.6 }}
           >
-              <a href="https://chat.whatsapp.com/LE0riQQX0sk4iFW93HC65d" className="cta-button"    target="_blank" 
-    rel="noopener noreferrer" >
-    Join Now
-  </a>
+              <a href="https://chat.whatsapp.com/LE0riQQX0sk4iFW93HC65d" className="cta-button" target="_blank" rel="noopener noreferrer">
+                Join Now
+              </a>
           </motion.div>
         </motion.div>
       </section>
@@ -56,24 +93,28 @@ export default function Home() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-
-          <div className="stat-item">
-            <h3>500+</h3>
-            <p>Plantations</p>
-          </div>
-          <div className="stat-item">
-            <h3>300+</h3>
-            <p>Volunteers Guided</p>
-          </div>
-          <div className="stat-item">
-            <h3>70+</h3>
-            <p>Street vendors interviewed</p>
-          </div>
-          <div className="stat-item">
-            <h3>300+ kg</h3>
-            <p>Waste Cleared</p>
-          </div>
+          {finalStats.map((stat, index) => (
+            <motion.div 
+              key={index}
+              className="stat-item"
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <h3>
+                {stats[index]}{index === 3 ? '+ kg' : '+'}
+              </h3>
+              <p>{[
+                'Plantations',
+                'Volunteers Guided',
+                'Street vendors interviewed',
+                'Waste Cleared'
+              ][index]}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </section>
 
@@ -84,22 +125,26 @@ export default function Home() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <h2>Our Commitment</h2>
-          <p>
-            At <span className="highlight">Green Klan</span>, We exist to ignite an ecological revolution that pulses through hands, hearts, and neighborhoods. Our purpose is to arm communities with the tools to resurrect the planet not just in boardrooms, but in backyards, riverbanks, and the silent spaces where nature’s voiceless cry out. We fuel ideas that solve through innovation, yes, but we also plant warriors: everyday visionaries who build communities where clean spaces and thriving environments are non-negotiable standards, not distant dreams.
-
-          </p>
-          <p>
-          We don’t just plant trees—we write the destiny of the next generation. We don’t just ‘help’ animals - we give voice to the voiceless, turning empty skies back into symphonies of wings, transforming concrete sprawls into wild corridors where life claws its way home. Our communities don’t just adopt practices - they forge rituals of rebellion, where carrying cloth bags becomes a badge of honor and fixing broken ecosystems becomes a shared addiction.
-          </p>
-
-          <p>
-          This is our call for survival: youngsters planting forests that outlive them, engineers building homes for birds and animals, neighborhoods competing to erase their carbon footprints like it’s the World Cup. We’re here to make ‘sustainability’ obsolete—replaced by societies so fiercely connected to Earth that polluting it feels truly like cutting off their own limbs.
-          </p>
-          <p>
-          Join us. This is not a charity. This is a war for mother earth, and every blade of grass you plant is a bullet against apathy. 
-          </p>
+          {[
+            "GreenKlan or shall I say the Klan of Generation Green (Gen G), commits to ignite an ecological revolution that transforms communities and restores nature. ",
+            "We empower individuals with the tools, knowledge, and support to become catalysts for change. Through innovation, collaboration, and action, we tackle environmental challenges head-on. Whether it is planting trees, restoring ecosystems, and becoming voice of the voiceless.  ",
+            "We believe in creating tangible impact: from reducing carbon footprints to nurturing socio-eco entrepreneurs, we’re building a future where sustainability is second nature. Our mission is to inspire action, foster resilience, and leave a legacy of hope for generations to come.  ",
+            "Zero Waste, Infinite Hope. This is GreenKlan. This is our commitment.  ",
+            "Become a part of Gen G. Together, we can rewrite the future with one project, one idea, one life at a time.",
+           
+          ].map((paragraph, index) => (
+            <motion.p
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 + 0.2 }}
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+          ))}
         </motion.div>
       </section>
 
