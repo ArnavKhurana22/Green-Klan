@@ -6,13 +6,15 @@ import heroImage from '../assets/hero-image.jpg';
 
 export default function Home() {
   const [stats, setStats] = useState([0, 0, 0, 0]);
-  const finalStats = [500, 300, 70, 300]; // Your actual numbers
+  const finalStats = [500, 300, 70, 300];
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            setAnimate(true);
             animateNumbers();
           }
         });
@@ -25,21 +27,21 @@ export default function Home() {
   }, []);
 
   const animateNumbers = () => {
-    finalStats.forEach((final, index) => {
-      let start = 0;
-      const duration = 300;
-      const stepTime = Math.max(1, Math.floor(duration / final));
+    const duration = 1000; // Fixed duration for all animations
+    const startTime = Date.now();
+
+    const updateStats = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
       
-      const timer = setInterval(() => {
-        start += 1;
-        setStats(prev => {
-          const newStats = [...prev];
-          newStats[index] = start;
-          return newStats;
-        });
-        if (start >= final) clearInterval(timer);
-      }, stepTime);
-    });
+      setStats(finalStats.map(final => Math.floor(progress * final)));
+
+      if (progress < 1) {
+        requestAnimationFrame(updateStats);
+      }
+    };
+
+    requestAnimationFrame(updateStats);
   };
 
   return (
@@ -49,6 +51,7 @@ export default function Home() {
       exit={{ opacity: 0 }}
       className="home-page"
     >
+
       {/* Hero Section */}
       <section 
         className="hero-section" 
@@ -87,13 +90,13 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section">
+ <section className="stats-section">
         <motion.div 
           className="stats-grid"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
         >
           {finalStats.map((stat, index) => (
             <motion.div 
@@ -102,7 +105,7 @@ export default function Home() {
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ duration: 0.4 }} // Same duration for all
             >
               <h3>
                 {stats[index]}{index === 3 ? '+ kg' : '+'}
