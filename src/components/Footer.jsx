@@ -11,7 +11,7 @@ export default function Footer() {
           <h4>Contact Us</h4>
           <div className="footer-contact-info">
             <p>+91 97703 77316</p>
-            <p>agahenv@gmail.com</p>
+            <p>hr@greenklan.com</p>
           </div>
         </div>
 
